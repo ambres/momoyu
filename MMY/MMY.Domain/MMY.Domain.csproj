@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="HiPlay.Jupiter.Infrastructure.Domain.SqlSugar" Version="1.0.0" />
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.9" />
     </ItemGroup>
 
 

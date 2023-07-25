@@ -2,6 +2,8 @@ using System.Reflection;
 using Jupiter.Infrastructure;
 using Jupiter.Infrastructure.Cache.Interfaces;
 using Jupiter.Infrastructure.Domain.SqlSugar.Basic;
+using Jupiter.Infrastructure.Permission;
+using Jupiter.Infrastructure.Permission.DataPermissions;
 using Jupiter.Infrastructure.SqlSugar.Unit;
 using Jupiter.Infrastructure.Swagger;
 using Microsoft.Extensions.Caching.Distributed;
@@ -16,6 +18,8 @@ var connectionConfig = configuration.GetConnectionByKeyOrEnv("ConnectionConfig",
 
 services.AddSingleton<ICacheManager, BlockCacheManager>();
 services.AddSingleton<IDistributedCache, BlockCache>();
+services.AddScoped<ISecurityContextAccessor, BlockSecurityContextAccessor>();
+services.AddScoped<IDataPermission, BlockDataPermission>();
 
 services.AddSugarDataBase(connectionConfig)
     .AddCustomCors(configuration)
