@@ -1,18 +1,55 @@
+using System.Reflection;
+using Jupiter.Infrastructure;
+using Jupiter.Infrastructure.Cache.Interfaces;
+using Jupiter.Infrastructure.Domain.SqlSugar.Basic;
+using Jupiter.Infrastructure.SqlSugar.Unit;
+using Jupiter.Infrastructure.Swagger;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.OpenApi.Models;
+using MMY.BlockClass;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var services = builder.Services;
+var configuration = builder.Configuration;
+var connectionConfig = configuration.GetConnectionByKeyOrEnv("ConnectionConfig", "CONN_CONFIG");
 
-builder.Services.AddControllersWithViews();
+services.AddSingleton<ICacheManager, BlockCacheManager>();
+services.AddSingleton<IDistributedCache, BlockCache>();
+
+services.AddSugarDataBase(connectionConfig)
+    .AddCustomCors(configuration)
+    .AddCustomServiceComponent(Assembly.Load("MMY.AppService.SqlSugar"))
+    .AddCustomSwaggerGen(new OpenApiInfo()
+    {
+        Title = "MMY",
+        Description = "接口文档"
+    });
+
+services.AddControllersWithViews();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+
+// 用于更新master数据库
+if (builder.Environment.IsDevelopment() && connectionConfig.UpdateDataBase)
+{
+    Jupiter.Infrastructure.SqlSugar.Unit.Extensions.UpdateDataBase(new SqlSugarUnitOptions()
+    {
+        DomainAssembly = connectionConfig.DomainAssembly.Select(c => new UnitDomainAssembly(c.Assembly, c.Folder))
+            .ToList(),
+        ConnectionString = connectionConfig.ConnectionString!,
+        DbType = connectionConfig.DbType,
+    });
+}
+
+app.UseCustomSwaggerFytApiUi();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
