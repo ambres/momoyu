@@ -2,6 +2,9 @@ using System.Reflection;
 using Jupiter.Infrastructure;
 using Jupiter.Infrastructure.Cache.Interfaces;
 using Jupiter.Infrastructure.Domain.SqlSugar.Basic;
+using Jupiter.Infrastructure.Mappings;
+using Jupiter.Infrastructure.MediatR;
+using Jupiter.Infrastructure.Mvc;
 using Jupiter.Infrastructure.Permission;
 using Jupiter.Infrastructure.Permission.DataPermissions;
 using Jupiter.Infrastructure.SqlSugar.Unit;
@@ -22,13 +25,21 @@ services.AddScoped<ISecurityContextAccessor, BlockSecurityContextAccessor>();
 services.AddScoped<IDataPermission, BlockDataPermission>();
 
 services.AddSugarDataBase(connectionConfig)
+    .AddCustomMapper()
+    .AddCustomValidators<MMY.AppService.Anchor>()
+    .AddCustomMediatR<MMY.AppService.SqlSugar.Anchor>(new List<Type>())
     .AddCustomCors(configuration)
     .AddCustomServiceComponent(Assembly.Load("MMY.AppService.SqlSugar"))
     .AddCustomSwaggerGen(new OpenApiInfo()
     {
         Title = "MMY",
         Description = "接口文档"
+    }).AddCustomControllers(option =>
+    {
+        option.AddCustomApiResultFilter();
+        option.AddCustomApiExceptionFilter();
     });
+;
 
 services.AddControllersWithViews();
 
@@ -54,6 +65,7 @@ if (builder.Environment.IsDevelopment() && connectionConfig.UpdateDataBase)
 }
 
 app.UseCustomSwaggerFytApiUi();
+app.UseCors();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

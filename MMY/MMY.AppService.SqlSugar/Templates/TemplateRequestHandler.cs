@@ -1,3 +1,4 @@
+using Jupiter.Infrastructure;
 using Jupiter.Infrastructure.Cache.Interfaces;
 using Jupiter.Infrastructure.Domain;
 using Jupiter.Infrastructure.Domain.SqlSugar;
@@ -57,6 +58,7 @@ public class TemplateRequestHandler : RequestHandlerBase<BasicTemplates, string>
     public async Task<string> Handle(CreateTemplateRequest request, CancellationToken cancellationToken)
     {
         BasicTemplates entity = _mapper.MapTo<BasicTemplates>(request);
+        entity.Id = ObjectId.GenerateNewStringId();
         await RegisterNewAsync(entity, cancellationToken);
         return entity.Id!;
     }
@@ -98,6 +100,7 @@ public class TemplateRequestHandler : RequestHandlerBase<BasicTemplates, string>
     public async Task<string> Handle(CreateTemplateRuleRequest request, CancellationToken cancellationToken)
     {
         BasicTemplateRules entity = _mapper.MapTo<BasicTemplateRules>(request);
+        entity.Id = ObjectId.GenerateNewStringId();
         await RegisterNewObjectValueAsync(entity, cancellationToken);
         return entity.Id!;
     }

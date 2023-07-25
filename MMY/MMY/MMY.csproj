@@ -9,12 +9,20 @@
         <SpaRoot>ClientApp\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
         <SpaProxyServerUrl>http://localhost:9998</SpaProxyServerUrl>
-        <SpaProxyLaunchCommand>yarn start</SpaProxyLaunchCommand>
+        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\net7.0\MMY.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net7.0\MMY.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
-        <PackageReference Include="HiPlay.Jupiter" Version="1.0.3"/>
+        <PackageReference Include="HiPlay.Jupiter" Version="1.0.3.1" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.5"/>
         <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.9" />
     </ItemGroup>

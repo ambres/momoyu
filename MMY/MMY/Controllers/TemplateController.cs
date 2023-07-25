@@ -1,7 +1,5 @@
 using System.Reflection;
 using Jupiter.Infrastructure.Domain.SqlSugar.Basic;
-using Jupiter.Infrastructure.Mvc;
-using Jupiter.Infrastructure.Permission.Attributes;
 using Jupiter.Infrastructure.Responses;
 using Jupiter.Infrastructure.Summary;
 using MediatR;
@@ -18,7 +16,9 @@ namespace MMY.Controllers;
 /// <summary>
 /// 模版管理
 /// </summary>
-public class TemplateController : CustomerControllerBase
+[ApiController]
+[Route("api/[controller]/[action]")]
+public class TemplateController : ControllerBase
 {
     /// <summary>
     /// 
@@ -52,7 +52,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
-    [Permission]
     public async Task<PageResult<GetTemplatePagesResponse>> GetPagesAsync(
         GetTemplatePagesRequest request)
     {
@@ -65,7 +64,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet]
-    [Permission]
     public async Task<GetTemplateByIdResponse> GetByIdAsync(string id)
     {
         return await _service.GetByIdAsync(id);
@@ -78,7 +76,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
-    [Permission]
     public async Task<string> PostAsync([FromBody] CreateTemplateRequest request)
     {
         return await _mediator.Send(request);
@@ -90,7 +87,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPut]
-    [Permission]
     public async Task<string> PutAsync([FromBody] UpdateTemplateRequest request)
     {
         return await _mediator.Send(request);
@@ -103,7 +99,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
-    [Permission]
     public async Task<string> CreateTemplateRuleAsync([FromBody] CreateTemplateRuleRequest request)
     {
         return await _mediator.Send(request);
@@ -116,7 +111,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPut]
-    [Permission]
     public async Task<string> UpdateTemplateRuleAsync([FromBody] UpdateTemplateRuleRequest request)
     {
         return await _mediator.Send(request);
@@ -129,7 +123,6 @@ public class TemplateController : CustomerControllerBase
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPut]
-    [Permission]
     public async Task<string> UpdateTemplateRuleCodeAsync([FromBody] UpdateTemplateRuleCodeRequest request)
     {
         return await _mediator.Send(request);
