@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMY", "MMY\MMY.csproj", "{4DB4D047-A36D-49D9-AB31-28A5F13D6C84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{0BE6AFDD-912B-488E-AB3F-EF291506B4D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MMY", "MMY", "{D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{74DFE282-7C42-4CBE-8AE2-EC30663D1372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMY.Infrastructure.CodeGen", "MMY.Infrastructure.CodeGen\MMY.Infrastructure.CodeGen.csproj", "{A3EB91F2-64FF-4ADD-9E01-647DC61B4829}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DB4D047-A36D-49D9-AB31-28A5F13D6C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB4D047-A36D-49D9-AB31-28A5F13D6C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB4D047-A36D-49D9-AB31-28A5F13D6C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB4D047-A36D-49D9-AB31-28A5F13D6C84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3EB91F2-64FF-4ADD-9E01-647DC61B4829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EB91F2-64FF-4ADD-9E01-647DC61B4829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EB91F2-64FF-4ADD-9E01-647DC61B4829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EB91F2-64FF-4ADD-9E01-647DC61B4829}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74DFE282-7C42-4CBE-8AE2-EC30663D1372} = {D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}
+		{4DB4D047-A36D-49D9-AB31-28A5F13D6C84} = {74DFE282-7C42-4CBE-8AE2-EC30663D1372}
+		{A3EB91F2-64FF-4ADD-9E01-647DC61B4829} = {0BE6AFDD-912B-488E-AB3F-EF291506B4D0}
+	EndGlobalSection
+EndGlobal
