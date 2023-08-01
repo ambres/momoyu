@@ -78,6 +78,7 @@ public class TemplateController : ControllerBase
     [HttpPost]
     public async Task<string> PostAsync([FromBody] CreateTemplateRequest request)
     {
+        
         return await _mediator.Send(request);
     }
 
