@@ -1,4 +1,5 @@
 using Jupiter.Infrastructure.Responses;
+using MMY.AppService.Templates.Models;
 using MMY.AppService.Templates.Requests;
 using MMY.AppService.Templates.Responses;
 
@@ -23,4 +24,20 @@ public interface ITemplateService
     /// <param name="id"></param>
     /// <returns></returns>
     Task<GetTemplateByIdResponse> GetByIdAsync(string id);
+
+
+    /// <summary>
+    /// 获取设置的下拉框
+    /// </summary>
+    /// <param name="templateId"></param>
+    /// <returns></returns>
+    Task<List<SelectViewModel>> GetSettingSelectViewAsync(string templateId);
+
+
+    /// <summary>
+    /// 获取单条规则详情
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<TemplateSettingModel> GetSettingById(string id);
 }

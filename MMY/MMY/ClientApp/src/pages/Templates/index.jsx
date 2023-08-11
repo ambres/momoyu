@@ -1,5 +1,5 @@
 import { getSorter, useRequestHandle } from '@/utils/utils';
-import {  EditOutlined, PlusOutlined, ReadOutlined, SettingOutlined } from '@ant-design/icons';
+import { EditOutlined, PlusOutlined, ReadOutlined, SettingOutlined } from '@ant-design/icons';
 import ProTable from '@ant-design/pro-table';
 import { Button, message, Space } from 'antd';
 import { useRef, useState } from 'react';
@@ -70,7 +70,7 @@ const TableList = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
-      width: 280,
+      width: 160,
       fixed: 'right',
       hideInTable: !isShowOptionColumn,
       render: (_, record) => (
@@ -110,14 +110,14 @@ const TableList = () => {
               配置
             </Button>
           </Access>
-          <Access accessible={canOperation(operation.update)}>
+          <Access accessible={canOperation(operation.update)&&false}>
             <Button
               type="primary"
               size="small"
               icon={<ReadOutlined />}
               loading={false}
               onClick={async () => {
-                history.push(`/system/enterprises/applications/${record.id}`);
+                history.push(`/templates/generate/${record.id}`);
               }}
             >
               生成

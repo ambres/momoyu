@@ -46,12 +46,6 @@ public class TemplateRuleModel
 
 
     /// <summary>
-    /// 本地发布路径
-    /// </summary>
-    public string? LocalPublishPath { get; set; }
-
-
-    /// <summary>
     /// 代码
     /// </summary>
     public string? Code { get; set; }

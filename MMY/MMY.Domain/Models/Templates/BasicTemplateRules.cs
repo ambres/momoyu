@@ -44,12 +44,6 @@ public class BasicTemplateRules : ValueObjectBase
 
 
     /// <summary>
-    /// 本地发布路径
-    /// </summary>
-    public string? LocalPublishPath { get; set; }
-
-
-    /// <summary>
     /// 代码
     /// </summary>
     [SugarColumn(ColumnDataType = "longtext")]

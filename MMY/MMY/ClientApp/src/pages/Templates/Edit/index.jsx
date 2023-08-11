@@ -19,6 +19,7 @@ export default () => {
     const [detail, setDetail] = useState({});
 
     const [hoverItem, setHoverItem] = useState({});
+    const [editItem, setEditItem] = useState({});
     async function reloadTemplateList() {
         const result = await get({ ...params });
         setDetail(result.data);
@@ -35,11 +36,13 @@ export default () => {
     }
     const createTemplateRuleRequest = useRequestHandle(createTemplateRule, () => {
         reloadTemplateList();
+        setEditItem({});
         setShowSaveForm(false);
 
     });
     const updateTemplateRuleRequest = useRequestHandle(updateTemplateRule, () => {
         reloadTemplateList();
+        setEditItem({});
         setShowSaveForm(false);
     });
 
@@ -76,6 +79,7 @@ export default () => {
 
                         onClick={() => {
                             setShowSaveForm(true);
+
                         }}
                         size="small" icon={<PlusOutlined />}>添加模版</Button></div>}
                     footer={<div />}
@@ -93,6 +97,7 @@ export default () => {
                         }}
                         actions={[<a
                             onClick={() => {
+                                setEditItem(item);
                                 setHoverItem(item);
                                 setShowSaveForm(true);
 
@@ -131,11 +136,12 @@ export default () => {
                 }
             }}
             onCancel={() => {
+                setEditItem({});
                 setShowSaveForm(false);
             }}
             loading={false}
             modalVisible={showSaveForm}
-            record={hoverItem}
+            record={editItem}
         />
 
 

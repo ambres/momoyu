@@ -1,5 +1,5 @@
 import { CopyOutlined, EyeOutlined } from "@ant-design/icons"
-import { Col, Row, Button, Modal, Segmented, Empty, Select, Spin, message } from "antd"
+import { Col, Row, Button, Modal, Segmented, Empty, Select, Spin, message, Input } from "antd"
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike'; // clike
 import 'prismjs/components/prism-javascript'; // js
@@ -59,7 +59,7 @@ export default (props) => {
             <Col>
 
                 <CopyToClipboard text={previewCode}
-                    onCopy={() => {message.success("复制成功")}}>
+                    onCopy={() => { message.success("复制成功") }}>
                     <Button size='small' type='link'
                         icon={<CopyOutlined />}>复制代码</Button>
                 </CopyToClipboard>
@@ -96,9 +96,10 @@ export default (props) => {
                 onChange={() => {
                     // setTabsValue(value);
                 }}
-                options={[{ label: "本地模型", value: "1" }, { label: "数据源模型", value: "2" }, { label: "远程模型", value: "3" }]} />
+                options={[{ label: "远程模型", value: "1" }]} />
 
             <div style={{ marginTop: "10px" }}>
+              
                 <Select
                     filterOption={(input, option) =>
                         (option?.label ?? '').toLowerCase().includes(input.toLowerCase())

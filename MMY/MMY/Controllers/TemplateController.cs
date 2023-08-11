@@ -5,7 +5,9 @@ using Jupiter.Infrastructure.Summary;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MMY.AppService;
 using MMY.AppService.Templates;
+using MMY.AppService.Templates.Models;
 using MMY.AppService.Templates.Requests;
 using MMY.AppService.Templates.Responses;
 using MMY.Requests;
@@ -78,7 +80,6 @@ public class TemplateController : ControllerBase
     [HttpPost]
     public async Task<string> PostAsync([FromBody] CreateTemplateRequest request)
     {
-        
         return await _mediator.Send(request);
     }
 
@@ -157,5 +158,51 @@ public class TemplateController : ControllerBase
     public string Preview([FromBody] PreviewCodeRequest request)
     {
         return Jupiter.Infrastructure.CodeGen.Extensions.Preview(request.Code, request.EntitySummary);
+    }
+
+
+    /// <summary>
+    /// 获取设置的下拉框
+    /// </summary>
+    /// <param name="templateId"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<List<SelectViewModel>> GetSettingSelectViewAsync(string templateId)
+    {
+        return await _service.GetSettingSelectViewAsync(templateId);
+    }
+
+
+    /// <summary>
+    /// 获取单条规则详情
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<TemplateSettingModel> GetSettingByIdAsync(string id)
+    {
+        return await _service.GetSettingById(id);
+    }
+
+    /// <summary>
+    /// 创建模版设置
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<string> CreateTemplateSettingAsync(CreateTemplateSettingRequest request)
+    {
+        return await _mediator.Send(request);
+    }
+    
+    /// <summary>
+    /// 编辑模版设置
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPut]
+    public async Task<string> UpdateTemplateSettingAsync(UpdateTemplateSettingRequest request)
+    {
+        return await _mediator.Send(request);
     }
 }

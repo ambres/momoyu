@@ -64,3 +64,31 @@ export async function preview(params) {
     data: { ...params },
   })
 }
+
+export async function getSettingSelectView(params) {
+  return request(`/api/${handlerName}/GetSettingSelectView`, {
+    method: 'GET',
+    params,
+  })
+}
+export async function getSettingById(params) {
+  return request(`/api/${handlerName}/GetSettingById`, {
+    method: 'GET',
+    params,
+  })
+}
+
+
+
+export async function createTemplateSetting(params) {
+  return request(`/api/${handlerName}/CreateTemplateSetting`, {
+    method: 'POST',
+    data: { ...params },
+  });
+}
+export async function updateTemplateSetting(params) {
+  return request(`/api/${handlerName}/UpdateTemplateSetting`, {
+    method: 'PUT',
+    data: { ...params },
+  });
+}

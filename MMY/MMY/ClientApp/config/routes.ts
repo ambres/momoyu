@@ -24,13 +24,13 @@ export default [
     path: '/system',
     access: 'canAdmin',
     routes: [
-      {
-        name: '数据源',
-        icon: 'CloudServerOutlined',
-        path: '/system/databases',
-        access: 'canAdmin',
-        component: './Databases',
-      },
+      // {
+      //   name: '数据源',
+      //   icon: 'CloudServerOutlined',
+      //   path: '/system/databases',
+      //   access: 'canAdmin',
+      //   component: './Databases',
+      // },
       {
         name: '代码模版',
         icon: 'CodeSandboxOutlined',
@@ -43,7 +43,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/system/templates',
   },
   
   {
@@ -59,6 +59,13 @@ export default [
     name: '模版编辑',
     path: '/templates/:id',
     component: './Templates/Edit',
+    hideInMenu: true,
+    full: true
+  },
+  {
+    name: '模版生成',
+    path: '/templates/generate/:id',
+    component: './Templates/Generate',
     hideInMenu: true,
     full: true
   },

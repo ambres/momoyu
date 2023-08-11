@@ -59,15 +59,15 @@ const SaveForm = (props) => {
               options={[
                 { value: 0, label: "模型" }
                 , { value: 1, label: "Swagger" }
-                , { value: 1, label: "YApi" }]}
+                , { value: 2, label: "YApi" }]}
             />
           </ProForm.Group>
-          <ProFormText
+          {/* <ProFormText
             name="localPublishPath"
             label="本地发布路径"
             placeholder="请输入本地发布路径"
             extra={"请注意window和mac环境路径命名方式不同"}
-          />
+          /> */}
         </ProForm>
       </Spin>
     </Modal>

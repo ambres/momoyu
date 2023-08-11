@@ -23,7 +23,9 @@ public class TemplateRequestHandler : RequestHandlerBase<BasicTemplates, string>
     IRequestHandler<UpdateTemplateRequest, string>,
     IRequestHandler<CreateTemplateRuleRequest, string>,
     IRequestHandler<UpdateTemplateRuleRequest, string>,
-    IRequestHandler<UpdateTemplateRuleCodeRequest, string>
+    IRequestHandler<UpdateTemplateRuleCodeRequest, string>,
+    IRequestHandler<CreateTemplateSettingRequest,string>,
+    IRequestHandler<UpdateTemplateSettingRequest,string>
 {
     /// <summary>
     /// 
@@ -128,7 +130,6 @@ public class TemplateRequestHandler : RequestHandlerBase<BasicTemplates, string>
         entity.SuffixName = request.SuffixName;
         entity.PrefixName = request.PrefixName;
         entity.TransferCase = request.TransferCase;
-        entity.LocalPublishPath = request.LocalPublishPath;
         // 更新
         RegisterDirtyObjectValue(entity);
         return entity.Id!;
@@ -158,4 +159,51 @@ public class TemplateRequestHandler : RequestHandlerBase<BasicTemplates, string>
         RegisterDirtyObjectValue(entity);
         return entity.Id!;
     }
+    
+    
+    
+    
+
+    /// <summary>
+    /// 创建模版设定
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<string> Handle(CreateTemplateSettingRequest request, CancellationToken cancellationToken)
+    {
+        BasicTemplateSettings entity = _mapper.MapTo<BasicTemplateSettings>(request);
+        entity.Id = ObjectId.GenerateNewStringId();
+        await RegisterNewAsync(entity, cancellationToken);
+        return entity.Id!;
+    }
+
+    /// <summary>
+    /// 修改模版设定
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<string> Handle(UpdateTemplateSettingRequest request, CancellationToken cancellationToken)
+    {
+        // 封装实体对象
+        var entity = await Query<BasicTemplateSettings>()
+            .Where(p => p.Id == request.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (entity == null)
+        {
+            throw new CoreException("找不到记录");
+        }
+
+        entity.Name = request.Name;
+        entity.LocalPath = request.LocalPath;
+        entity.SettingRules = request.SettingRules;
+        // 更新
+        RegisterDirty(entity);
+        return entity.Id!;
+    }
+
 }

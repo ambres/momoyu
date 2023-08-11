@@ -2,6 +2,7 @@ using Jupiter.Infrastructure.Attributes;
 using Jupiter.Infrastructure.Cache.Interfaces;
 using Jupiter.Infrastructure.Domain.SqlSugar;
 using Jupiter.Infrastructure.Domain.SqlSugar.Basic;
+using Jupiter.Infrastructure.Domain.SqlSugar.Models;
 using Jupiter.Infrastructure.Exceptions;
 using Jupiter.Infrastructure.Permission;
 using Jupiter.Infrastructure.Permission.DataPermissions;
@@ -75,5 +76,42 @@ public class TemplateAppService : AppServiceQueryBase<BasicTemplates>, ITemplate
         }
 
         return result ?? new GetTemplateByIdResponse();
+    }
+
+
+    /// <summary>
+    /// 获取设置的下拉框
+    /// </summary>
+    /// <param name="templateId"></param>
+    /// <returns></returns>
+    public async Task<List<SelectViewModel>> GetSettingSelectViewAsync(string templateId)
+    {
+        var result = await QueryNoTracking<BasicTemplateSettings>()
+            .Where(c => c.TemplateId == templateId)
+            .Select(p => new SelectViewModel
+            {
+                Value = p.Id!,
+                Label = p.Name,
+                Extend = p.SettingRules,
+                Extend1 = p.LocalPath
+            })
+            .ToListAsync();
+
+        return result;
+    }
+
+    /// <summary>
+    /// 获取单条规则详情
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<TemplateSettingModel> GetSettingById(string id)
+    {
+        var result = await QueryNoTracking<BasicTemplateSettings>()
+            .Where(c => c.Id == id)
+            .Select<TemplateSettingModel>()
+            .FirstOrDefaultAsync();
+
+        return result ?? new TemplateSettingModel();
     }
 }
