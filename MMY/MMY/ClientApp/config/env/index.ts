@@ -11,4 +11,5 @@ if (UMI_ENV === 'prod' || UMI_ENV === 'production') {
 if (UMI_ENV === 'test') {
   config = test;
 }
+console.log(config);
 export default config;

@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Jupiter.Infrastructure.Summary;
 
-namespace Jupiter.Infrastructure.CodeGen.Core;
+namespace MMY.Infrastructure.CodeGen.Core;
 
 /// <summary>
 /// 循环生成类

@@ -1,5 +1,5 @@
 import { CopyOutlined, EyeOutlined } from "@ant-design/icons"
-import { Col, Row, Button, Modal, Segmented, Empty, Select, Spin, message, Input } from "antd"
+import { Col, Row, Button, Modal, Segmented, Empty, Select, Spin, message } from "antd"
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike'; // clike
 import 'prismjs/components/prism-javascript'; // js
@@ -14,7 +14,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 export default (props) => {
-    const { record } = props;
+    const { record, template } = props;
     const highlightMap = {
         ".cs": languages.csharp,
         ".java": languages.java,
@@ -31,14 +31,19 @@ export default (props) => {
     const previewRequest = useRequestHandle(preview, (data) => {
         setPreviewCode(data);
     })
+    console.log(record, template)
     useEffect(() => {
         async function fetchData() {
-            const res = await getEntitySumary();
-            setLocalEntity(res.data);
-            setPreviewModel(res.data[0]);
+            const res = await getEntitySumary(template.apiAddress);
+            const response = await res.json();
+            setLocalEntity(response.data);
+            setPreviewModel(response.data[0]);
         }
-        fetchData();
-    }, []);
+        if (template.apiAddress) {
+            fetchData();
+        }
+
+    }, [template]);
     useUpdateEffect(() => {
         setPreviewCode("");
         // console.log("previewModel", previewModel, record);
@@ -99,7 +104,7 @@ export default (props) => {
                 options={[{ label: "远程模型", value: "1" }]} />
 
             <div style={{ marginTop: "10px" }}>
-              
+
                 <Select
                     filterOption={(input, option) =>
                         (option?.label ?? '').toLowerCase().includes(input.toLowerCase())

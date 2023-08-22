@@ -1,5 +1,7 @@
 import request from '@/utils/request';
 
+import { fetch } from 'umi-request';
+
 const handlerName = 'Template';
 export async function query(params) {
   return request(`/api/${handlerName}/GetPages`, {
@@ -50,10 +52,10 @@ export async function updateTemplateRuleCode(params) {
 
 
 
-export async function getEntitySumary(params) {
-  return request(`/api/Template/GetEntitySummary`, {
+export async function getEntitySumary(url) {
+  return fetch(url, {
     method: 'GET',
-    params,
+    params: {}
   });
 }
 

@@ -111,7 +111,7 @@ export default () => {
                 />
             </Sider>
 
-            <CodeEdit record={hoverItem}
+            <CodeEdit template={detail} record={hoverItem}
 
                 onChange={(value) => {
                     const index = templateList.findIndex(i => i.key === hoverItem.key);

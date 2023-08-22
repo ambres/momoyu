@@ -1,6 +1,6 @@
 using Jupiter.Infrastructure.Summary;
 
-namespace Jupiter.Infrastructure.CodeGen.Core;
+namespace MMY.Infrastructure.CodeGen.Core;
 
 public class CNameCodeGenerate : ICodeGenerate
 {

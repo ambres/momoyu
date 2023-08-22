@@ -1,4 +1,4 @@
-namespace Jupiter.Infrastructure.CodeGen;
+namespace MMY.Infrastructure.CodeGen;
 
 /// <summary>
 /// 常量

@@ -16,6 +16,7 @@ const F = (props) => {
         <ProForm
           onFinish={async (value) => {
             const params = value;
+            params.id = record.id;
             await onSubmit(params);
           }}
           initialValues={{ ...record }}

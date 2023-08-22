@@ -19,7 +19,7 @@ const { Content } = Layout;
 
 export default (props) => {
 
-    const { record, onChange } = props;
+    const { record, onChange,template } = props;
 
     // const regex = /\{\{\{.*?\}\}\}/s;
     const highlightMap = {
@@ -127,7 +127,7 @@ export default (props) => {
                     </Badge.Ribbon></>
 
                     :
-                    <PreviewCode record={innerRecord} />
+                    <PreviewCode template={template} record={innerRecord} />
 
                 }    </>
                 : <Empty style={{ marginTop: "200px" }} description={"请先添加模版"} />}

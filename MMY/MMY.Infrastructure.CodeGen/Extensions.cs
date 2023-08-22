@@ -1,7 +1,7 @@
-﻿using Jupiter.Infrastructure.CodeGen.Core;
-using Jupiter.Infrastructure.Summary;
+﻿using Jupiter.Infrastructure.Summary;
+using MMY.Infrastructure.CodeGen.Core;
 
-namespace Jupiter.Infrastructure.CodeGen;
+namespace MMY.Infrastructure.CodeGen;
 
 /// <summary>
 /// 代码生成扩展

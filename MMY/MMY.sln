@@ -16,6 +16,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMY.AppService.SqlSugar", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMY.Domain", "MMY.Domain\MMY.Domain.csproj", "{28111909-DE0C-4544-8643-9E78A7401DE8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{DF1AAF88-F2E2-435F-99C2-DEC9A15B358D}"
+	ProjectSection(SolutionItems) = preProject
+		build.py = build.py
+		Makefile = Makefile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,5 +56,6 @@ Global
 		{4B722DA4-E0F9-48D0-BA94-D9D9E95CA543} = {D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}
 		{4EC5EF7D-D838-4E7C-8F18-80C3AD0D249E} = {D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}
 		{28111909-DE0C-4544-8643-9E78A7401DE8} = {D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}
+		{DF1AAF88-F2E2-435F-99C2-DEC9A15B358D} = {D040D6D5-5B3A-45B3-BE1E-C14BAA732B5C}
 	EndGlobalSection
 EndGlobal
